@@ -9,22 +9,33 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnMoveActivity;
+    private Button btnMoveWithDataActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMoveActivity = (Button)findViewById(R.id.btn_move_activity);
+        btnMoveActivity = (Button) findViewById(R.id.btn_move_activity);
         btnMoveActivity.setOnClickListener(this);
+        btnMoveWithDataActivity = (Button) findViewById(R.id.btn_move_activity_data);
+        btnMoveWithDataActivity.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_move_activity:
-                Intent moveIntent = new Intent(MainActivity.this, MoveActivity.class);
+                Intent moveIntent = new Intent(
+                        MainActivity.this, MoveActivity.class);
                 startActivity(moveIntent);
+                break;
+            case R.id.btn_move_activity_data:
+                Intent moveWithDataIntent = new Intent(
+                        MainActivity.this, MoveWithDataActivity.class);
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Sukmo Afri Ardi Saputro");
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 21);
+                startActivity(moveWithDataIntent);
                 break;
         }
     }
